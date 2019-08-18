@@ -22,7 +22,7 @@ module.exports = {
 		if (member.highestRole.position >= call.message.member.highestRole.position || member.id === call.message.guild.ownerID)
 			return call.message.channel.send('You do not have permission to unmute this user.');
 
-		let mute = mutes.mutes.find((mute) => mute.guild === call.message.guild.id && mute.member === member.id);
+		let mute = mutes.mutes.find((mute) => mute.guild === call.message.guild.id && mute.user === member.id);
 
 		if (!mute)
 			return call.message.channel.send('This user is not muted.');

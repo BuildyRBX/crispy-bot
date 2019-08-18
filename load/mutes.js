@@ -4,7 +4,7 @@ const { client: clientPG } = require('./database');
 module.exports = {
 	id: 'mutes',
 	mutes: [],
-	run: async function (client) {
+	exec: async function (client) {
 		this.getMutes = function() {
 			return clientPG.query('SELECT guild, "user", end_date FROM public.mutes').then((result) => result.rows);
 		};
