@@ -12,11 +12,11 @@
   "license": "ISC",
   "author": "Bot Services",
   "dependencies": {
-    "d.js-command-handler": "1.1.7",
-    "discord.js": "^11.4.2",
-    "node-fetch": "^2.3.0",
-    "roblox-js": "^4.0.4",
-    "ms": "2.1.1"
+    "d.js-command-handler": "^1.2.7",
+    "discord.js": "^11.5.1",
+    "ms": "^2.1.2",
+    "pg": "^7.12.1",
+    "safe-timers": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",

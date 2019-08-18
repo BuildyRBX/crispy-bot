@@ -18,7 +18,7 @@ module.exports = {
 
 		let duration = call.args[1];
 
-		length = length.toLowerCase() === '0s' ? 0 : parseTime(length);
+		length = length.toLowerCase() === '0s' || length.toLowerCase() === '0' ? 0 : parseTime(length);
 		if (!length && length !== 0)
 			return call.message.channel.send('Invalid length.');
 
