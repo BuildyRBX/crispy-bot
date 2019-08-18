@@ -7,7 +7,7 @@ module.exports = {
 	currentSlow: new Collection(),
 	desc: 'Sets the slowmode',
 	exec: async (call) => {
-		if (!call.message.member.roles.some((r) => ['Administrator', 'Directorship Team', 'Overseer', 'Owner'].includes(r.name)))
+		if (!call.message.member.roles.some((r) => ['M-3'].includes(r.name)))
 			return call.message.channel.send('You do not have permission to use this command.');
 
 		let channel = call.message.channel;

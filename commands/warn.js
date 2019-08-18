@@ -6,7 +6,7 @@ module.exports = {
 	desc: 'Warns the specified user.',
 	channels: 'guild',
 	exec: async (call) => {
-		if (!call.message.member.roles.some((r) => ['Trial Moderator', 'Moderator', 'Senior Moderator', 'Administrator', 'Directorship Team', 'Owner'].includes(r.name)))
+		if (!call.message.member.roles.some((r) => ['M-1', 'M-2', 'M-3'].includes(r.name)))
 			return call.message.channel.send('You do not have permission to use this command.');
 
 		let user = call.args[0];
