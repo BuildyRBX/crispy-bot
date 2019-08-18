@@ -16,6 +16,7 @@
     "discord.js": "^11.5.1",
     "ms": "^2.1.2",
     "pg": "^7.12.1",
+    "pretty-ms": "^5.0.0",
     "safe-timers": "^1.1.0"
   },
   "devDependencies": {
