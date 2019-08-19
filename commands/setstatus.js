@@ -6,7 +6,7 @@ module.exports = {
 			let newStatus = call.args[0];
 
 			if (!newStatus || !['invisible', 'dnd', 'idle', 'online'].includes(newStatus.toLowerCase()))
-				call.message.channel.send('Please rerun the command and specify a valid status: `invisble`, `dnd`, `idle` or `online`.')
+				call.message.channel.send('Please rerun the command and specify a valid status: `invisble`, `dnd`, `idle` or `online`.');
 
 			call.client.user.setStatus(newStatus)
 				.then(() => call.message.channel.send('Changed the status.'))
