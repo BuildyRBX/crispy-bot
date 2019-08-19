@@ -39,7 +39,7 @@ module.exports = {
 		if (!time || time <= 0)
 			return call.message.channel.send(`Please rerun the command and supply a valid length to be put in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s <optional reason>\`.`);
 
-		let reason = 'BANLAND: ' + call.args.slice(2).join(' ') || 'BANLAND: none specified';
+		let reason = 'BANLAND: ' + (call.args.slice(2).join(' ') || 'none specified');
 		let muteRole = call.message.guild.roles.find(({ name }) => name.toLowerCase() === 'banland');
 		if (!muteRole)
 			return call.message.channel.send('There is no banland role in this server.');
