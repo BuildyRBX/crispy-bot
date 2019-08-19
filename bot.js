@@ -8,6 +8,7 @@ const loaders = new Collection(fs.readdirSync('./load').map((n) => require(`./lo
 
 client.ownerID = '390950851725754378';
 client.owner = { id: '390950851725754378', tag: 'gt_crispy#1318' };
+client.prefix = ',';
 
 client.on('ready', () => {
 	console.log(client.user.username + ' has successfully booted up.');
@@ -19,6 +20,6 @@ client.on('ready', () => {
 	client.logChannel = client.channels.get('612422618246676511');
 });
 
-handler(__dirname + '/commands', client, { customPrefix: ',' });
+handler(__dirname + '/commands', client, { customPrefix: client.prefix });
 
 client.login(token);
