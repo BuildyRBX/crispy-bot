@@ -19,6 +19,6 @@ client.on('ready', () => {
 	client.logChannel = client.channels.get('612422618246676511');
 });
 
-handler(__dirname + '/commands', client, { customPrefix: '!' });
+handler(__dirname + '/commands', client, { customPrefix: ',' });
 
 client.login(token);
