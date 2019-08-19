@@ -20,17 +20,21 @@ module.exports = {
 			return call.message.channel.send(`Please rerun the command with a valid title. e.g. \`${call.client.prefix}announce Title: Content\``);
 
 		let pingMethod = await call.prompt('What ping do you want to send with the announcement? Options: `here`, `everyone`, `normal` or anything else for a custom message.').then((m) => m.content.toLowerCase());
+		let image = await call.prompt('Please specify an image or `skip` to skip.').then((m) => m.attachments.first() ? m.attachments.first().url : m.content);
 
-		channel.send(['everyone', 'here'].includes(pingMethod) ? `@${pingMethod}` : pingMethod === 'normal' ? '' : pingMethod,
-			{
-				embed: new RichEmbed()
-					.setColor('GREEN')
-					.setTitle(annTitle)
-					.setDescription(annDescription)
-					.setFooter(`Announced by ${call.message.author.tag}`),
-				disableEveryone: false
-			})
+		let embed = new RichEmbed()
+			.setColor('GREEN')
+			.setTitle(annTitle)
+			.setDescription(annDescription)
+			.setFooter(`Announced by ${call.message.author.tag}`)
+			.setImage(image);
+
+		channel.send(['everyone', 'here'].includes(pingMethod) ? `@${pingMethod}` : pingMethod === 'normal' ? '' : pingMethod, { embed, disableEveryone: false })
 			.then(() => call.message.channel.send('Successfully sent the announcement.'))
-			.catch(() => call.message.channel.send('Failed to send the announcement, please check my permissions and try again.'));
+			.catch(() => {
+				channel.send(['everyone', 'here'].includes(pingMethod) ? `@${pingMethod}` : pingMethod === 'normal' ? '' : pingMethod, { embed: embed.setImage(undefined), disableEveryone: false })
+					.then(() => call.message.channel.send('Successfully sent the announcement.'))
+					.catch(() => call.message.channel.send('Failed to send the announcement, please check my permissions and try again.'));
+			});
 	}
 };

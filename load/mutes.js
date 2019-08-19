@@ -42,7 +42,7 @@ module.exports = {
 			if (!member)
 				return;
 
-			member.removeRole(guild.roles.find(({ name }) => name.toLowerCase() === 'muted'));
+			member.removeRole(member.roles.find(({ name }) => name.toLowerCase() === 'muted' || name.toLowerCase() === 'banland')).catch(() => {});
 		};
 
 		for (let mute of await this.getMutes())
