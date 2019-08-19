@@ -16,8 +16,6 @@ client.on('ready', () => {
 	for (let loader of loaders.values())
 		if (typeof loader.exec === 'function')
 			loader.exec(client);
-
-	client.logChannel = client.channels.get('612422618246676511');
 });
 
 handler(__dirname + '/commands', client, { customPrefix: client.prefix });

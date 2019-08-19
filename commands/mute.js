@@ -55,7 +55,7 @@ module.exports = {
 					committer: call.message.author.id
 				};
 
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('RED')
 						.setAuthor(`${member.user.username} Muted`, member.user.displayAvatarURL)

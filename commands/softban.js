@@ -32,7 +32,7 @@ module.exports = {
 		call.message.guild.ban(user, { reason: `Soft by ${call.message.author.tag} for ${reason}`, days: 7 })
 			.then(() => call.message.guild.unban(user))
 			.then(() => {
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('RED')
 						.setAuthor(`${user.username} Softbanned`, user.displayAvatarURL)

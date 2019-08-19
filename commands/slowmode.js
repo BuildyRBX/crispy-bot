@@ -44,12 +44,13 @@ module.exports = {
 			}
 		}, () => call.message.channel.send('Could not change the slowmode for this channel.'));
 
-		call.client.logChannel.send(new RichEmbed()
-			.setTitle('Slowmode Changed')
-			.setColor('RED')
-			.addField('Length', call.args[0])
-			.addField('Duration', call.args[1] || 0)
-			.addField('Channel', call.message.channel)
-			.addField('Moderator', call.message.author.toString())).catch(() => {});
+		call.message.guild.channels.find((m) => m.name === 'logs').send(
+			new RichEmbed()
+				.setTitle('Slowmode Changed')
+				.setColor('RED')
+				.addField('Length', call.args[0])
+				.addField('Duration', call.args[1] || 0)
+				.addField('Channel', call.message.channel)
+				.addField('Moderator', call.message.author.toString())).catch(() => {});
 	}
 };

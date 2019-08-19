@@ -28,7 +28,7 @@ module.exports = {
 
 		member.kick(`Kicked by ${call.message.author.tag} for ${reason}`)
 			.then(() => {
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('RED')
 						.setAuthor(`${member.user.username} Kicked`, member.user.displayAvatarURL)

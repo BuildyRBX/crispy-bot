@@ -31,7 +31,7 @@ module.exports = {
 
 		call.message.guild.ban(user, `Banned by ${call.message.author.tag} for ${reason}`)
 			.then(() => {
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('RED')
 						.setAuthor(`${user.username} Banned`, user.displayAvatarURL)

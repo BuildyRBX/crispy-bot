@@ -66,7 +66,7 @@ module.exports = {
 			call.message.channel.beingPurged = false;
 
 			return call.message.channel.send(`Successfully purged ${purged} message${purged > 1 ? 's' : ''}.`).then(() => {
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('RED')
 						.setTitle('Channel Purged')

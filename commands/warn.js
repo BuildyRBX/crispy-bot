@@ -31,7 +31,7 @@ module.exports = {
 
 		infractions.addInfraction({ type: 'warn', committer: call.message.author.id, reason });
 
-		call.client.logChannel.send(
+		call.message.guild.channels.find((m) => m.name === 'logs').send(
 			new RichEmbed()
 				.setColor('RED')
 				.setAuthor(`${user.username} Warned`, user.displayAvatarURL)

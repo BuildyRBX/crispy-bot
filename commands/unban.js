@@ -25,7 +25,7 @@ module.exports = {
 		call.message.guild.unban(user, reason).then((unbannedUser) => {
 			call.message.channel.send(`Successfully unbanned ${unbannedUser.username}.`);
 
-			call.client.logChannel.send(
+			call.message.guild.channels.find((m) => m.name === 'logs').send(
 				new RichEmbed()
 					.setColor('RED')
 					.setAuthor(`${user.username} Unbanned`, user.displayAvatarURL)

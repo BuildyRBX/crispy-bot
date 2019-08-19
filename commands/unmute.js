@@ -32,7 +32,7 @@ module.exports = {
 
 		member.removeRole(muteRole, `unmuted by ${call.message.author.tag} with reason: ${reason}`)
 			.then(async () => {
-				call.client.logChannel.send(
+				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('Green')
 						.setAuthor(`${member.user.username} Unmuted`, member.user.displayAvatarURL)
