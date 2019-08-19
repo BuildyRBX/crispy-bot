@@ -32,7 +32,7 @@ module.exports = {
 	aliases: ['warnings'],
 	desc: 'Shows you the false actions a user has committed.',
 	exec: async (call) => {
-		if (!call.message.member.roles.some((r) => ['Moderator', 'Senior Moderator', 'Administrator', 'Directorship Team', 'Overseer', 'Owner'].includes(r.name)))
+		if (!call.message.member.roles.some((r) => ['M3'].includes(r.name)))
 			return call.message.channel.send('You do not have permission to use this command.');
 
 		let option = call.args[0];
