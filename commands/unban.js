@@ -5,7 +5,7 @@ module.exports = {
 	channels: 'guild',
 	desc: 'Unbans someone.',
 	exec: async (call) => {
-		if (!call.message.member.roles.some((r) => ['M-3'].includes(r.name)))
+		if (!call.message.member.roles.some((r) => ['M3'].includes(r.name)))
 			return call.message.channel.send('You do not have permission to use this command.');
 
 		let user = call.args[0];
