@@ -31,7 +31,6 @@ class Database {
 		return client.query('SELECT * FROM public.toggle').then((toggles) => toggles.rows);
 	}
 	static addToggleable(guild, role) {
-		console.log(role);
 		return client.query(`INSERT INTO public.toggle (guild, role)
 			VALUES ($1, $2)`, [guild, role]);
 	}
