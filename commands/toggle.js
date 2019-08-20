@@ -35,7 +35,7 @@ module.exports = {
 		if (call.message.member.roles.some((r) => ['M3'].includes(r.name)))
 			options = ['list', 'add', 'remove'];
 
-		let option = call.args.shift().toLowerCase();
+		let option = call.args[0].toLowerCase();
 
 		if (options.includes(option))
 			try {
@@ -47,6 +47,8 @@ module.exports = {
 				call.message.channel.send('An error occured with the toggle command. Please try again later.');
 			}
 		else {
+			option = call.args.join(' ');
+
 			let toggleable = findRole(toggles, option);
 			let role;
 
