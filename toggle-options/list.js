@@ -1,0 +1,21 @@
+const { RichEmbed } = require('discord.js');
+const sendPaged = require('../utility/sendPaged.js');
+
+module.exports = {
+	id: 'list',
+	exec: function (call, findRole, toggles) {
+		if (toggles.length === 0)
+			return call.message.channel.send('There are no toggleable roles for this server.');
+
+		let listEmbed = new RichEmbed()
+			.setTitle('Toggleable Roles')
+			.setColor('GREEN')
+			.setFooter(`Ran by ${call.message.author.tag}`);
+
+		sendPaged(call, listEmbed,
+			{
+				values: toggles.map((m) => `\`${m.role.toUpperCase()}\``).sort(),
+				valuesPerPage: 10
+			});
+	}
+};
