@@ -43,6 +43,10 @@ module.exports = {
 				return;
 
 			member.removeRole(member.roles.find(({ name }) => name.toLowerCase() === 'muted' || name.toLowerCase() === 'banland')).catch(() => {});
+
+			let index = this.mutes.indexOf(this.mutes.find(({ guild, user }) => guild === mute.guild && user === mute.user));
+			if (index !== -1)
+				this.mutes.splice(index, 1);
 		};
 
 		for (let mute of await this.getMutes())
