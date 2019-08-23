@@ -14,12 +14,12 @@ module.exports = {
 		let member = call.args[0];
 
 		if (!member)
-			return call.message.channel.send(`Please rerun the command and mention or supply the ID of a user to place in banland e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s <optional reason>\`.`);
+			return call.message.channel.send(`Please rerun the command and mention or supply the ID of a user to place in banland e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s/perm <optional reason>\`.`);
 
 		member = call.message.guild.members.get(member.replace(/\D+/g, ''));
 
 		if (!member)
-			return call.message.channel.send(`Please rerun the command and mention or supply the ID of a valid user to place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s <optional reason>\`.`);
+			return call.message.channel.send(`Please rerun the command and mention or supply the ID of a valid user to place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s/perm <optional reason>\`.`);
 
 		if (member.highestRole.position >= call.message.member.highestRole.position || member.id === call.message.guild.ownerID)
 			return call.message.channel.send('You do not have permission to place this user in banland.');
@@ -32,12 +32,12 @@ module.exports = {
 		let time = call.args[1];
 
 		if (!time)
-			return call.message.channel.send(`Please rerun the command and supply the length to be place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s <optional reason>\``);
+			return call.message.channel.send(`Please rerun the command and supply the length to be place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s/perm <optional reason>\``);
 
-		time = parseTime(time);
+		time = time === 'perm' ? 'perm' : parseTime(time);
 
 		if (!time || time <= 0)
-			return call.message.channel.send(`Please rerun the command and supply a valid length to be place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s <optional reason>\`.`);
+			return call.message.channel.send(`Please rerun the command and supply a valid length to be place in banland. e.g. \`${call.client.prefix}banland ${call.client.owner.tag} 10m10s/perm <optional reason>\`.`);
 
 		let reason = 'BANLAND: ' + (call.args.slice(2).join(' ') || 'none specified');
 		let muteRole = call.message.guild.roles.find(({ name }) => name.toLowerCase() === 'banland');
@@ -62,13 +62,13 @@ module.exports = {
 						.setAuthor(`${member.user.username} Muted (Banland)`, member.user.displayAvatarURL)
 						.addField('User Muted', member.user.toString())
 						.addField('Muted By', call.message.author.toString())
-						.addField('Mute Length', parseTime(time))
+						.addField('Mute Length', time === 'perm' ? 'perm' : parseTime(time))
 						.addField('Reason', reason)
 				).catch(() => {});
 
 				infractions.addInfraction(mute);
 
-				await mutes.addMute({ guild: call.message.guild.id, user: member.id, end_date: mute.date + mute.length }, true);
+				await mutes.addMute({ guild: call.message.guild.id, user: member.id, end_date: time === 'perm' ? 'perm' : mute.date + mute.length }, true);
 
 				call.message.channel.send(`Successfully placed ${member.user.tag} in banland.`);
 			}, () => call.message.channel.send('Failed to place this user in banland.'));

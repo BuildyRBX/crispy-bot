@@ -10,6 +10,8 @@ module.exports = {
 		};
 
 		this.addMute = async function(mute, add = false) {
+			mute.end_date = mute.end_date === 'perm' ? 0 : mute.end_date;
+
 			let existing = this.mutes.find(({ guild, user }) => guild === mute.guild && user === mute.user);
 
 			if (existing) {
@@ -24,7 +26,7 @@ module.exports = {
 			if (add && !existing)
 				await clientPG.query('INSERT INTO public.mutes (guild, "user", end_date) VALUES($1, $2, $3)', [mute.guild, mute.user, mute.end_date]);
 
-			mute.timeout = setTimeout(this.removeMute.bind(null, mute), parseInt(mute.end_date) - Date.now());
+			mute.timeout = mute.end_date == 0 ? undefined : setTimeout(this.removeMute.bind(null, mute), parseInt(mute.end_date) - Date.now());
 		};
 
 		this.removeMute = async function(mute) {
