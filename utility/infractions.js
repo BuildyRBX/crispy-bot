@@ -64,7 +64,7 @@ class Infractions {
 	static addInfraction(guildID, userID, { type, reason, length, date, id, committer }) {
 		return client.query(`INSERT INTO public.infractions (guild, "user", "type", reason, "length", "date", "id", committer)
 			VALUES($1, $2, $3, $4, $5, $6, $7, $8)`,
-		[guildID, userID, type, reason, length, date, id, committer]).then(() => null);
+		[guildID, userID, type, reason, length === 'perm' ? 0 : length, date, id, committer]).then(() => null);
 	}
 
 	/**
