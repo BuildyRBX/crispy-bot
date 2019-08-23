@@ -3,6 +3,7 @@ const { RichEmbed } = require('discord.js');
 module.exports = {
 	id: 'help',
 	desc: 'Sends you a list of commands.',
+	channels: 'guild',
 	exec: async (call) => {
 		let helpEmbed = new RichEmbed()
 				.setTitle('Commands'),

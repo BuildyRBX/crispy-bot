@@ -29,6 +29,7 @@ let files = fs.readdirSync('./toggle-options').map((name) => {
 module.exports = {
 	id: 'toggle',
 	desc: 'Toggles a role.',
+	channels: 'guild',
 	exec: async (call) => {
 		let toggles = call.client.toggle.filter((m) => m.guild === call.message.guild.id);
 

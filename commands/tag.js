@@ -29,6 +29,7 @@ let files = fs.readdirSync('./tag-options').map((name) => {
 module.exports = {
 	id: 'tag',
 	desc: 'Tag create, delete, list, etc.',
+	channels: 'guild',
 	exec: (call) => {
 		let tags = call.client.tags.filter((m) => m.guild === call.message.guild.id);
 

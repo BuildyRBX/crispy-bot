@@ -1,6 +1,7 @@
 module.exports = {
 	id: 'dm',
 	desc: 'Dms a user with a message',
+	channels: 'guild',
 	exec: async (call) => {
 		if (call.message.author.id === call.client.ownerID) {
 			let author = call.client.users.get(((call.args[0] || '').match(/\d+/) || [])[0]);
