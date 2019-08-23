@@ -30,13 +30,25 @@ class Database {
 	static getToggleable() {
 		return client.query('SELECT * FROM public.toggle').then((toggles) => toggles.rows);
 	}
-	static addToggleable(guild, role) {
-		return client.query(`INSERT INTO public.toggle (guild, role)
-			VALUES ($1, $2)`, [guild, role]);
+	static addToggleable(guild, role, required_role) {
+		return client.query(`INSERT INTO public.toggle (guild, role, required_role)
+			VALUES ($1, $2, $3)`, [guild, role, required_role]);
 	}
 	static removeToggleable(guild, role) {
 		return client.query(`DELETE FROM public.toggle
 			WHERE guild = $1 AND role = $2;`, [guild, role]);
+	}
+	static isDisabled(user) {
+		return client.query(`SELECT "user" FROM public.disable_toggle
+		WHERE "user" = $1`, [user]).then((r) => r.rows[0] ? true : false);
+	}
+	static disableToggle(user) {
+		return client.query(`INSERT INTO public.disable_toggle ("user")
+		VALUES ($1)`, [user]);
+	}
+	static enableToggle(user) {
+		return client.query(`DELETE FROM public.disable_toggle
+		WHERE "user" = $1`, [user]);
 	}
 }
 module.exports = Database;

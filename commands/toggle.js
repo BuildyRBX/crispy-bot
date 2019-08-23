@@ -1,4 +1,5 @@
 const fs = require('fs');
+const db = require('../utility/database.js');
 
 let HELP =
 `**__Commands__**
@@ -6,7 +7,10 @@ toggle (role)
 toggle list
 __Restricted__
 toggle add (name)
-toggle remove (name)`;
+toggle remove (name)
+toggle enable @user
+toggle disable @user
+toggle force @user role`;
 
 function findRole (roles, search) {
 	return roles.find((role) => role.role === search.toLowerCase());
@@ -25,7 +29,7 @@ let files = fs.readdirSync('./toggle-options').map((name) => {
 module.exports = {
 	id: 'toggle',
 	desc: 'Toggles a role.',
-	exec: (call) => {
+	exec: async (call) => {
 		let toggles = call.client.toggle.filter((m) => m.guild === call.message.guild.id);
 
 		if (!call.args[0])
@@ -33,7 +37,7 @@ module.exports = {
 
 		let options = ['list'];
 		if (call.message.member.roles.some((r) => ['M3'].includes(r.name)))
-			options = ['list', 'add', 'remove'];
+			options = ['list', 'add', 'remove', 'enable', 'disable', 'force'];
 
 		let search = call.args.join(' ');
 		let option = call.args.shift().toLowerCase();
@@ -55,6 +59,14 @@ module.exports = {
 				role = call.message.guild.roles.find((m) => m.name.toLowerCase() === toggleable.role);
 				if (!role)
 					return call.message.channel.send('This role does not exist in this server.');
+
+				if (toggleable.required_role)
+					if (!call.message.member.roles.find((r) => r.name.toLowerCase() === toggleable.required_role))
+						return call.message.channel.send(`You must have the \`${toggleable.required_role}\` role in order to toggle this role.`);
+
+				let disabled = await db.isDisabled(call.message.author.id);
+				if (disabled)
+					return call.message.channel.send('You have been blacklisted from toggling roles.');
 
 				call.message.member.roles.has(role.id) ?
 					call.message.member.removeRole(role)
