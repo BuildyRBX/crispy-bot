@@ -42,6 +42,6 @@ module.exports = {
 
 		user.send(`You have been warned by ${call.message.author.tag} for ${reason}`)
 			.then(() => call.message.channel.send(`Successfully warned ${user.tag}`))
-			.catch(() => call.message.channel.send(`Failed to warn ${user.tag}.`));
+			.catch(() => call.message.channel.send(`Could not dm ${user.tag}, but they were warned.`));
 	}
 };

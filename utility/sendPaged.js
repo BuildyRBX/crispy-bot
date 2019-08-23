@@ -58,7 +58,7 @@ async function pagedSend(call, embed, options = {}) {
 	}
 
 	if (msg === null) {
-		msg = await call.message.channel.send(embed);
+		msg = await call.message.author.send(embed);
 		if (options.valuesPerPage < options.values.length) {
 			await msg.react('◀');
 			await msg.react('▶');

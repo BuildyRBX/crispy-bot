@@ -99,6 +99,7 @@ module.exports = {
 				.setAuthor(`${user.username}'s Infringements`, user.displayAvatarURL)
 				.setColor('GREEN');
 
+			call.message.channel.send('Sending you this user\'s infractions, If you do not recieve this dm, please check your privacy settings and try again.');
 			sendPaged(call, embed, { values: await asyncMap(current, async (i, index) => `**Infringement #${index + 1}**` +
 				`\nID: \`${i.id}\`` +
 				`\nType: \`${i.type}\`` +
