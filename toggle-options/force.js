@@ -23,7 +23,7 @@ module.exports = {
 
 			if (toggleable.required_role)
 				if (!call.message.member.roles.find((r) => r.name.toLowerCase() === toggleable.required_role))
-					return call.message.channel.send(`You must have the \`${toggleable.required_role}\` role in order to force toggle this role.`);
+					return call.message.channel.send('You do not have permission to force toggle this role.');
 
 			member.roles.has(role.id) ?
 				member.removeRole(role)
