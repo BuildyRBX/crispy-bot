@@ -2,7 +2,7 @@ const sendPaged = require('../utility/sendPaged');
 const Infractions = require('../utility/infractions');
 const { RichEmbed } = require('discord.js');
 
-const CLEAR_TYPES = ['ban', 'mute', 'kick', 'softban', 'warn', 'all'];
+const CLEAR_TYPES = ['ban', 'mute', 'voice mute', 'kick', 'softban', 'warn', 'all'];
 
 function clearInfractions(call, infractions, filter) {
 	infractions.clearInfractions(filter.toLowerCase()).then(() => {
@@ -24,7 +24,7 @@ async function asyncMap(arr, func) {
 }
 
 function pastTenseFilter(filter) {
-	return `${filter.endsWith('ban') ? `${filter}n` : filter === 'mute' ? 'mut' : filter}ed`;
+	return `${filter.endsWith('ban') ? `${filter}n` : filter === 'mute' ? 'mut' : filter === 'voice mute' ? 'voice mut' : filter}ed`;
 }
 
 module.exports = {
@@ -76,17 +76,17 @@ module.exports = {
 				call.message.channel.send('Failed to remove infraction from the user.');
 			});
 		} else if (option === 'clear') {
-			let filter = call.args[2];
+			let filter = call.args.slice(2).join(' ') || undefined;
 
 			if (!CLEAR_TYPES.includes(filter && filter.toLowerCase()))
-				return call.message.channel.send('Please specify a filter to define which infractions you wish to clear. Filter options: `ban`, `mute`, `kick`, `softban`, `warn` or `all`.');
+				return call.message.channel.send('Please specify a filter to define which infractions you wish to clear. Filter options: `ban`, `voice mute`, `mute`, `kick`, `softban`, `warn` or `all`.');
 
 			clearInfractions(call, infractions, filter);
 		} else {
-			let filter = call.args[1];
+			let filter = call.args.slice(1).join(' ') || undefined;
 
-			if (!['ban', 'mute', 'kick', 'softban', 'warn', undefined].includes(filter && filter.toLowerCase()))
-				return call.message.channel.send('Please specify a valid filter, or none at all. Filter options: `ban`, `mute`, `kick`, `softban` or `warn`.');
+			if (!['ban', 'mute', 'kick', 'softban', 'warn', 'voice mute', undefined].includes(filter && filter.toLowerCase()))
+				return call.message.channel.send('Please specify a valid filter, or none at all. Filter options: `ban`, `mute`, `voice mute`, `kick`, `softban` or `warn`.');
 
 			filter = filter && filter.toLowerCase();
 
