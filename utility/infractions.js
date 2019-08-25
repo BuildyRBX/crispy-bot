@@ -205,7 +205,7 @@ class Infractions {
 
 		// Do not decrement database value of lastID.
 		return Infractions.removeAllInfractions(this.guildID, this.member.id, filter).then(async () => {
-			this.current = await Infractions.getInfractions(this.guildID, this.member.id);
+			this.current.length = 0;
 		});
 	}
 }
