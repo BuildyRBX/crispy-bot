@@ -23,7 +23,7 @@ module.exports = {
 					.setTitle(search)
 					.setColor('RED')
 					.setDescription(description)
-					.addField('Link', `[Link](${url})`)
+					.addField('Link', `[${search}](${url})`)
 					.setFooter(`Ran by ${call.message.author.tag}`, call.message.author.displayAvatarURL);
 
 				call.message.channel.send(embed);
