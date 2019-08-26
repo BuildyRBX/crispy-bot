@@ -15,6 +15,7 @@
     "d.js-command-handler": "^1.2.7",
     "discord.js": "^11.5.1",
     "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
     "pg": "^7.12.1",
     "pretty-ms": "^5.0.0",
     "safe-timers": "^1.1.0"
