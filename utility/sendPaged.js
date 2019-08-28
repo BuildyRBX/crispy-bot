@@ -12,6 +12,7 @@ const { createMenu } = require('./menus');
  * @type {PagingOptions}
  */
 const PAGED_SEND_DEFAULTS = {
+	dm: true,
 	valuesPerPage: 50,
 	allowFlip: true,
 	bypassMultiple: false,
@@ -58,7 +59,11 @@ async function pagedSend(call, embed, options = {}) {
 	}
 
 	if (msg === null) {
-		msg = await call.message.author.send(embed);
+		if (options.dm)
+			msg = await call.message.author.send(embed);
+		else
+			msg = await call.message.channel.send(embed);
+
 		if (options.valuesPerPage < options.values.length) {
 			await msg.react('◀');
 			await msg.react('▶');
