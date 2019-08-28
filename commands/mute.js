@@ -50,6 +50,9 @@ module.exports = {
 		let muteRole = call.message.guild.roles.find(({ name }) => name.toLowerCase() === `${type === 'server' ? 'muted' : 'supressed'}`);
 		member.addRole(muteRole, `muted by ${call.message.author.tag} with reason: ${reason}`)
 			.then(async () => {
+				if (type === 'voice' && member.voiceChannel)
+					member.setVoiceChannel(null).catch(() => {});
+
 				let infractions = Infractions.infractionsOf(member, call.message.guild.id);
 
 				let mute = {

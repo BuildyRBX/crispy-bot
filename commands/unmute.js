@@ -37,9 +37,6 @@ module.exports = {
 		let muteRole = call.message.guild.roles.find(({ name }) => name.toLowerCase() === `${type === 'server' ? 'muted' : 'supressed'}`);
 		member.removeRole(muteRole, `unmuted by ${call.message.author.tag} with reason: ${reason}`)
 			.then(async () => {
-				if (type === 'voice' && member.voiceChannel)
-					member.setVoiceChannel(null).catch(() => {});
-
 				call.message.guild.channels.find((m) => m.name === 'logs').send(
 					new RichEmbed()
 						.setColor('Green')
