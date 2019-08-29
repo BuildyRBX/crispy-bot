@@ -10,7 +10,7 @@ module.exports = {
 		if (!call.args[0])
 			return call.message.channel.send('You must provide a search.');
 
-		let search = call.cut.replace(/\s/g, '').replace(/^./, (c) => c.toUpperCase())
+		let search = call.cut.replace(/\s/g, '').replace(/^./, (c) => c.toUpperCase());
 
 		let url = `https://developer.roblox.com/en-us/api-reference/class/${search}`;
 
