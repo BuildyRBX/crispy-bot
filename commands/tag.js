@@ -2,7 +2,7 @@ const fs = require('fs');
 
 let HELP =
 `**__Commands__**
-tag all
+tag list
 tag info (name)
 __Restricted__
 tag create (name) (desc)
@@ -36,9 +36,9 @@ module.exports = {
 		if (!call.args[0])
 			return call.message.channel.send(HELP);
 
-		let options = ['info', 'all'];
+		let options = ['info', 'list'];
 		if (call.message.member.roles.some((r) => ['M3'].includes(r.name)))
-			options = ['info', 'all', 'create', 'delete', 'rename', 'edit', 'alias', 'remove_alias'];
+			options = ['info', 'list', 'create', 'delete', 'rename', 'edit', 'alias', 'remove_alias'];
 
 		let option = call.args.shift().toLowerCase();
 

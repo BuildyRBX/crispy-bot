@@ -10,6 +10,8 @@ client.ownerID = '390950851725754378';
 client.owner = { id: '390950851725754378', tag: 'gt_crispy#1318' };
 client.prefix = ',';
 
+handler.promptOptionsDefaults.correct = (m) => m.channel.send('Invalid input. Please retry.');
+
 client.on('ready', () => {
 	console.log(client.user.username + ' has successfully booted up.');
 

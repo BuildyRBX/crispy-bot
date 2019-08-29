@@ -7,6 +7,8 @@ module.exports = {
 			if (user.bot || messageReaction.message.channel.name !== 'ad-approval')
 				return;
 
+			messageReaction.remove(user);
+
 			let adChannel = messageReaction.message.guild.channels.find((m) => m.name === 'advertisements');
 			if (!adChannel)
 				return user.send('Could not find the advertisements channel in this server.');
