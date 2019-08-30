@@ -14,7 +14,7 @@ module.exports = {
 
 		sendPaged(call, listEmbed,
 			{
-				values: toggles.map((m) => `\`${m.role.toUpperCase()}\` ${m.required_role ? `-> \`${m.required_role.toUpperCase()}\`` : ''}`).sort(),
+				values: toggles.map((m) => `${m.multiple.length > 0 ? `[\`${m.role.toUpperCase()}\`, ${m.multiple.map((m) => `\`${m.toUpperCase()}\``).join(', ')}]` : `\`${m.role.toUpperCase()}\``} ${m.required_role ? `-> \`${m.required_role.toUpperCase()}\`` : ''}`).sort(),
 				valuesPerPage: 10,
 				dm: false,
 			});

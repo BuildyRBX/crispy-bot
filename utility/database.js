@@ -30,9 +30,9 @@ class Database {
 	static getToggleable() {
 		return client.query('SELECT * FROM public.toggle').then((toggles) => toggles.rows);
 	}
-	static addToggleable(guild, role, required_role) {
-		return client.query(`INSERT INTO public.toggle (guild, role, required_role)
-			VALUES ($1, $2, $3)`, [guild, role, required_role]);
+	static addToggleable(guild, role, required_role, multiple) {
+		return client.query(`INSERT INTO public.toggle (guild, role, required_role, multiple)
+			VALUES ($1, $2, $3, $4)`, [guild, role, required_role, JSON.stringify(multiple)]);
 	}
 	static removeToggleable(guild, role) {
 		return client.query(`DELETE FROM public.toggle
