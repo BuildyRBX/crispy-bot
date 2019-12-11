@@ -1,3 +1,4 @@
+const { RichEmbed } = require('discord.js')
 const fs = require('fs');
 
 let HELP =
@@ -12,7 +13,11 @@ tag rename (name) (new_name)
 tag alias (name) (alias)
 tag remove_alias (name) (alias)`;
 
-function findTag (tags, search) {
+function titleCase(str) {
+	return str.replace(/(^|\s)\S/g, function(t) { return t.toUpperCase(); });
+}
+
+function findTag(tags, search) {
 	return tags.find((tag) => tag.name === search.toLowerCase() || tag.aliases.includes(search.toLowerCase()));
 }
 
@@ -54,7 +59,13 @@ module.exports = {
 		else {
 			let tag = findTag(tags, option);
 			if (tag)
-				call.message.channel.send(tag.content).catch(() => {});
+				call.message.channel.send(
+					new RichEmbed()
+						.setColor('BLUE')
+						.setFooter(call.message.author.username, call.message.author.displayAvatarURL)
+						.setTitle(`${titleCase(tag.name)} Tag`)
+						.setDescription(tag.content)
+				console.error);
 			else
 				call.message.channel.send('Could not find this tag.');
 
