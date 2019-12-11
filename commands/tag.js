@@ -64,7 +64,7 @@ module.exports = {
 						.setColor('BLUE')
 						.setFooter(call.message.author.username, call.message.author.displayAvatarURL)
 						.setTitle(`${titleCase(tag.name)} Tag`)
-						.setDescription(tag.content)
+						.setDescription(tag.content),
 				console.error);
 			else
 				call.message.channel.send('Could not find this tag.');
