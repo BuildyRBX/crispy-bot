@@ -7,7 +7,7 @@ module.exports = {
 			return call.message.channel.send(HELP);
 
 		let name = call.args[0].toLowerCase();
-		let content = call.cut.substring(name.length).trim();
+		let content = call.cut.substring(6).trim().substring(name.length).trim();
 		let tag = findTag(tags, name);
 
 		if (tag)
