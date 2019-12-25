@@ -24,7 +24,7 @@ module.exports = {
 		emoji = emoji.replace(/^<a?:|>$/g, '');
 
 		if (!emoji || !hasReaction(await call.client.channels.get(channel).fetchMessage(message), emoji))
-			return call.message.reply(`please rerun the command with the emoji that is used to role the user. Make sure that the emoji is already reacted to the message, also note that custom emojis are not accepted. e.g \`${call.client.prefix}rolemessage https://discordapp.com/channels/123/123/123 😄 Verified\``);
+			return call.message.reply(`please rerun the command with the emoji that is used to role the user. Make sure that the emoji is already reacted to the message. e.g \`${call.client.prefix}rolemessage https://discordapp.com/channels/123/123/123 😄 Verified\``);
 
 		if (!role.length)
 			return call.message.reply(`please rerun the comand and supply the name or ID of the role to add when to a user who reacts. e.g \`${call.client.prefix}rolemessage https://discordapp.com/channels/123/123/123 😄 Verified\``);
