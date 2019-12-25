@@ -14,9 +14,9 @@ module.exports = {
 			if (reaction.message.channel.type !== 'text')
 				return;
 
-			let roleMessage = this.roleMessages.find((vM) => vM.message === reaction.message.id);
+			let roleMessage = this.roleMessages.find((vM) => vM.message === reaction.message.id && isEmoji(reaction, vM.emoji));
 
-			if (!roleMessage || !isEmoji(reaction, roleMessage.emoji))
+			if (!roleMessage)
 				return;
 
 			reaction.message.guild.fetchMember(user).then((member) => member.addRole(roleMessage.role))
@@ -26,9 +26,9 @@ module.exports = {
 			if (reaction.message.channel.type !== 'text')
 				return;
 
-			let roleMessage = this.roleMessages.find((vM) => vM.message === reaction.message.id);
+			let roleMessage = this.roleMessages.find((vM) => vM.message === reaction.message.id && isEmoji(reaction, vM.emoji));
 
-			if (!roleMessage || !isEmoji(reaction, roleMessage.emoji))
+			if (!roleMessage)
 				return;
 
 			reaction.message.guild.fetchMember(user).then((member) => member.removeRole(roleMessage.role))
