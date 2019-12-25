@@ -21,7 +21,7 @@ module.exports = {
 	channels: 'guild',
 	exec: async (call) => {
 		if (call.message.member.roles.every((r) => r.name !== 'M3'))
-			return call.message.channel.send('You need the M3 role to use this command.');
+			return call.message.channel.send('You do not have permission to run this command.');
 
 		if (!call.args[0])
 			return call.message.channel.send(`Please specify at least one embed value.${SUPPORT_STRING}e.g.\`\`\`!embed TITLE: hello\nDESCRIPTION: goodbye\`\`\``);
