@@ -20,6 +20,6 @@ client.on('ready', () => {
 			loader.exec(client);
 });
 
-//handler(__dirname + '/commands', client, { customPrefix: client.prefix });
+handler(__dirname + '/commands', client, { customPrefix: client.prefix });
 
 client.login(token);
