@@ -1,18 +1,18 @@
 const EmbedParser = require('../utility/EmbedParser');
 
 const SUPPORT_STRING = `\`\`\`
-TITLE: the title text of the embed.
-TITLE_URL: the link that the user is directed to upon clicking on the title text.
-COLOR: the color of the embed.
-DESCRIPTION: the description body of the embed.
-AUTHOR: the author text of the embed. 
-AUTHOR_ICON: the link representing the tiny image to put on the left of the author text.
-AUTHOR_URL: the link that the user is directed to upon clicking on the author text.
-THUMBNAIL: the link representing the small image displayed in the top right of the embed.
-FOOTER: the footer text of the embed.
-FOOTER_ICON: the link representing the tiny image to put on the left of the footer text.
-IMAGE: the link representing the large image to put on the bottom of the embed.
-FIELD: represents a field of the embed. formatted like this: <field name>|<field text>|<field inline>, field inline should be one of 'true' or 'false. You can have up to 25 of these.
+TITLE: Embed Title.
+TITLE_URL: Embed Title Link
+COLOR: Embed Color
+DESCRIPTION: Embed Description Body
+AUTHOR: Embed Author Text
+AUTHOR_ICON: Embed Author Image
+AUTHOR_URL: Embed Author Text Link
+THUMBNAIL: Embed Thumbnail Image (Top Right)
+FOOTER: Embed Footer Text
+FOOTER_ICON: Embed Footer Image
+IMAGE: Embed Image (Largest Image)
+FIELD: Add Embed Field [Format: Field Name | Field Description | inline: true/false] (Up to 25) 
 \`\`\``;
 
 module.exports = {
