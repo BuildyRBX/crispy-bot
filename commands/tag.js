@@ -63,7 +63,7 @@ module.exports = {
 					new RichEmbed()
 						.setColor('BLUE')
 						.setFooter(call.message.author.username, call.message.author.displayAvatarURL)
-						.setTitle(`${titleCase(tag.name)} Tag`)
+						.setTitle(`${titleCase(tag.name)}`)
 						.setDescription(tag.content)
 				).catch(console.error);
 			else
