@@ -3,7 +3,7 @@ module.exports = {
 	desc: 'Dms a user with a message',
 	channels: 'guild',
 	exec: async (call) => {
-		if if (!call.message.member.roles.some((r) => ['M3'].includes(r.name))) {
+		if if call.message.member.roles.some((r) => ['M3'].includes(r.name)) {
 			let author = call.client.users.get(((call.args[0] || '').match(/\d+/) || [])[0]);
 			if (author != null) {
 				let content = call.message.content.substring(call.prefixUsed.length).trim().substring(4 + call.args[0].length).trim();
